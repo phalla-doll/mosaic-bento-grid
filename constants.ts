@@ -1,4 +1,4 @@
-import { BentoItem } from './types';
+import { BentoItem, Testimonial } from './types';
 
 export const CATEGORIES = ['All', 'Design', 'Development', 'Marketing', 'Productivity'] as const;
 
@@ -126,5 +126,32 @@ export const ITEMS: BentoItem[] = [
     category: 'Design',
     imageUrl: 'https://picsum.photos/seed/shapes/600/600',
     size: 'small'
+  }
+];
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: '1',
+    quote: "Mosaic has completely transformed how we approach interface design. The quality of components is unmatched.",
+    author: "Sarah Chen",
+    role: "Product Designer",
+    company: "Linear",
+    avatarUrl: "https://picsum.photos/seed/sarah/100/100"
+  },
+  {
+    id: '2',
+    quote: "The attention to detail in every interaction is what sets this library apart. It's not just code, it's craft.",
+    author: "Marcus Rodriguez",
+    role: "Frontend Lead",
+    company: "Vercel",
+    avatarUrl: "https://picsum.photos/seed/marcus/100/100"
+  },
+  {
+    id: '3',
+    quote: "We shipped our new dashboard in record time using these layouts. The grid system is incredibly flexible.",
+    author: "Emily Watson",
+    role: "CTO",
+    company: "Raycast",
+    avatarUrl: "https://picsum.photos/seed/emily/100/100"
   }
 ];

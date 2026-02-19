@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import BentoGrid from './components/BentoGrid';
+import Testimonials from './components/Testimonials';
 import { ITEMS } from './constants';
 import { ArrowRight } from 'lucide-react';
 
@@ -40,6 +41,9 @@ const App: React.FC = () => {
 
         {/* The Grid */}
         <BentoGrid items={ITEMS} />
+
+        {/* Testimonials */}
+        <Testimonials />
       </main>
 
       <footer className="border-t border-white/10 bg-black py-12">

@@ -14,3 +14,12 @@ export interface BentoItem {
 }
 
 export type Category = 'All' | 'Design' | 'Development' | 'Marketing' | 'Productivity';
+
+export interface Testimonial {
+  id: string;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  avatarUrl?: string;
+}
