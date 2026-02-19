@@ -5,105 +5,126 @@ export const CATEGORIES = ['All', 'Design', 'Development', 'Marketing', 'Product
 export const ITEMS: BentoItem[] = [
   {
     id: '1',
-    title: 'Lumina Interface',
-    description: 'Next-gen dashboard analytics with real-time data processing capabilities.',
+    title: 'Haptic',
+    description: 'We help ambitious teams turn bold visions into lasting impact.',
     category: 'Design',
-    imageUrl: 'https://picsum.photos/800/600?random=1',
-    size: 'wide',
-    cta: 'View Dashboard',
-    date: 'Oct 24, 2023'
+    backgroundColor: 'bg-orange-500',
+    size: 'big',
+    cta: 'Book a Call',
+    darkText: false
   },
   {
     id: '2',
-    title: 'Abstract Geometric',
-    description: 'A collection of 3D rendered shapes for modern web layouts.',
-    category: 'Design',
-    imageUrl: 'https://picsum.photos/600/800?random=2',
-    size: 'tall',
-    date: 'Nov 02, 2023'
+    title: 'Algo',
+    description: 'Data-visualization studio specializing in video automation.',
+    category: 'Development',
+    imageUrl: 'https://picsum.photos/seed/algo/800/800',
+    size: 'wide',
+    date: '01 Tech'
   },
   {
     id: '3',
-    title: 'Code Snippets',
-    description: 'Optimized React hooks library.',
-    category: 'Development',
-    imageUrl: 'https://picsum.photos/400/400?random=3',
-    size: 'small',
-    cta: 'Get Code'
+    title: 'Town',
+    description: 'Tax prep that never stops working for your small business.',
+    category: 'Productivity',
+    backgroundColor: 'bg-emerald-900',
+    size: 'tall',
+    cta: 'Get Started'
   },
   {
     id: '4',
-    title: 'Marketing Kit',
-    description: 'Social media templates.',
+    title: 'Datalands',
+    description: 'Branding and data, together at last.',
     category: 'Marketing',
-    imageUrl: 'https://picsum.photos/400/400?random=4',
-    size: 'small'
+    imageUrl: 'https://picsum.photos/seed/datalands/800/400',
+    size: 'wide',
+    cta: 'Let\'s Talk'
   },
   {
     id: '5',
-    title: 'Task Master 3.0',
-    description: 'The ultimate productivity suite for remote teams. Now with AI integration.',
-    category: 'Productivity',
-    imageUrl: 'https://picsum.photos/800/800?random=5',
-    size: 'big',
-    cta: 'Try Beta',
-    date: 'Just Launched'
+    title: 'Neon',
+    description: 'The new creative workflow.',
+    category: 'Design',
+    imageUrl: 'https://picsum.photos/seed/neon/600/600',
+    size: 'small',
+    cta: 'Get Started'
   },
   {
     id: '6',
-    title: 'Neon Icons',
-    description: 'Glowing SVG icons.',
-    category: 'Design',
-    imageUrl: 'https://picsum.photos/400/400?random=6',
-    size: 'small'
+    title: 'Cartesia',
+    description: 'The fastest, ultra-realistic voice AI platform.',
+    category: 'Development',
+    backgroundColor: 'bg-neutral-900',
+    size: 'tall',
+    cta: 'Start for Free'
   },
   {
     id: '7',
-    title: 'Server Stats',
-    description: 'Monitor your infrastructure.',
-    category: 'Development',
-    imageUrl: 'https://picsum.photos/400/400?random=7',
-    size: 'small'
+    title: 'Page Break',
+    description: 'A new weekend reading retreat hosted in New York.',
+    category: 'Marketing',
+    backgroundColor: 'bg-blue-600',
+    size: 'big',
+    cta: 'Read Together'
   },
   {
     id: '8',
-    title: 'Gradient Pack',
-    description: 'High-fidelity mesh gradients for backgrounds.',
-    category: 'Design',
-    imageUrl: 'https://picsum.photos/800/400?random=8',
+    title: 'Sonar',
+    description: 'Build with the best AI answer engine.',
+    category: 'Development',
+    backgroundColor: 'bg-neutral-800',
     size: 'wide',
-    cta: 'Download'
+    cta: 'Start Building'
   },
   {
     id: '9',
-    title: 'Mobile Layouts',
-    description: 'Responsive primitives for iOS and Android web apps.',
-    category: 'Development',
-    imageUrl: 'https://picsum.photos/400/800?random=9',
-    size: 'tall'
+    title: 'Sun Hung',
+    description: 'Preserving the legacy of sound.',
+    category: 'Design',
+    backgroundColor: 'bg-red-900',
+    size: 'small'
   },
   {
     id: '10',
-    title: 'Analytics Pro',
-    description: 'Deep dive into user behavior.',
-    category: 'Marketing',
-    imageUrl: 'https://picsum.photos/400/400?random=10',
-    size: 'small'
+    title: 'Linear',
+    description: 'Planning and building the future.',
+    category: 'Productivity',
+    imageUrl: 'https://picsum.photos/seed/linear/400/800',
+    size: 'tall'
   },
   {
     id: '11',
-    title: 'Flow Charts',
-    description: 'Visualizing complex logic.',
+    title: 'Comet',
+    description: 'A personal AI assistant for your browser.',
     category: 'Productivity',
-    imageUrl: 'https://picsum.photos/400/400?random=11',
-    size: 'small'
+    backgroundColor: 'bg-white',
+    size: 'tall',
+    darkText: true,
+    cta: 'Download'
   },
   {
     id: '12',
-    title: 'User Personas',
-    description: 'Detailed user archetype cards.',
+    title: 'Polarsteps',
+    description: 'One travel app for all your adventures.',
     category: 'Marketing',
-    imageUrl: 'https://picsum.photos/400/400?random=12',
+    imageUrl: 'https://picsum.photos/seed/polar/800/600',
+    size: 'wide',
+    cta: 'Explore'
+  },
+   {
+    id: '13',
+    title: 'Biograph',
+    description: 'Uncover hidden risks in your long-term health.',
+    category: 'Productivity',
+    imageUrl: 'https://picsum.photos/seed/bio/400/400',
+    size: 'small'
+  },
+  {
+    id: '14',
+    title: 'Abstract 3D',
+    description: 'Geometric shapes pack.',
+    category: 'Design',
+    imageUrl: 'https://picsum.photos/seed/shapes/600/600',
     size: 'small'
   }
 ];

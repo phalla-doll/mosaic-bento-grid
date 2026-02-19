@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Calendar, Tag } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { BentoItem } from '../types';
 
 interface BentoCardProps {
@@ -9,74 +9,86 @@ interface BentoCardProps {
 
 const BentoCard: React.FC<BentoCardProps> = ({ item }) => {
   // Determine grid spans based on size prop
+  // Uses responsive classes to adapt to column count changes
   const getSpanClasses = (size: BentoItem['size']) => {
     switch (size) {
       case 'big':
-        return 'md:col-span-2 md:row-span-2';
+        return 'col-span-1 row-span-1 md:col-span-2 md:row-span-2';
       case 'wide':
-        return 'md:col-span-2 md:row-span-1';
+        return 'col-span-1 row-span-1 md:col-span-2 md:row-span-1';
       case 'tall':
-        return 'md:col-span-1 md:row-span-2';
+        return 'col-span-1 row-span-2';
       case 'small':
       default:
-        return 'md:col-span-1 md:row-span-1';
+        return 'col-span-1 row-span-1';
     }
   };
+
+  const textColorClass = item.darkText ? 'text-black' : 'text-white';
+  const subTextColorClass = item.darkText ? 'text-neutral-600' : 'text-neutral-300';
+  const buttonBgClass = item.darkText ? 'bg-black text-white hover:bg-neutral-800' : 'bg-white text-black hover:bg-neutral-200';
 
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
-      className={`group relative overflow-hidden rounded-3xl bg-neutral-900 border border-neutral-800 ${getSpanClasses(
-        item.size
-      )}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`group relative overflow-hidden rounded-2xl ${
+        item.backgroundColor || 'bg-neutral-900'
+      } ${getSpanClasses(item.size)}`}
     >
-      {/* Background Image with Zoom Effect */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          src={item.imageUrl}
-          alt={item.title}
-          className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 opacity-60 group-hover:opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
-      </div>
+      {/* Background Image */}
+      {item.imageUrl && (
+        <div className="absolute inset-0 z-0 h-full w-full">
+          <img
+            src={item.imageUrl}
+            alt={item.title}
+            className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+          />
+          {/* Subtle gradient overlay for readability if needed, usually lighter for modern look */}
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+        </div>
+      )}
 
-      {/* Content Overlay */}
-      <div className="relative z-10 flex h-full flex-col justify-between p-6">
-        <div className="flex items-start justify-between opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-medium text-white backdrop-blur-md">
-            <Tag size={12} className="mr-1.5" />
-            {item.category}
-          </span>
-          <button className="rounded-full bg-white p-2 text-black transition-transform hover:scale-110">
-            <ArrowUpRight size={16} />
-          </button>
+      {/* Content Container */}
+      <div className="relative z-10 flex h-full flex-col justify-between p-6 md:p-8">
+        {/* Header (Top) */}
+        <div className="flex items-start justify-between">
+          {/* Optional Date/Tag */}
+           {item.date ? (
+             <span className={`text-xs font-medium uppercase tracking-wider ${subTextColorClass} opacity-80`}>
+               {item.date}
+             </span>
+           ) : (
+             <div /> // Spacer
+           )}
+           
+           <button className={`rounded-full p-2 transition-transform hover:scale-110 opacity-0 group-hover:opacity-100 duration-300 ${buttonBgClass}`}>
+             <ArrowUpRight size={16} />
+           </button>
         </div>
 
-        <div className="mt-auto transform transition-transform duration-300 group-hover:-translate-y-2">
-           {item.date && (
-            <div className="mb-2 flex items-center text-xs text-neutral-400">
-              <Calendar size={12} className="mr-1.5" />
-              {item.date}
-            </div>
-          )}
-          <h3 className="text-xl font-semibold text-white md:text-2xl">
-            {item.title}
-          </h3>
-          <p className="mt-2 text-sm text-neutral-400 line-clamp-2 group-hover:text-neutral-200">
-            {item.description}
-          </p>
-          
-          {item.cta && (
-            <div className="mt-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4">
-              <span className="text-sm font-medium text-blue-400 hover:text-blue-300 cursor-pointer">
-                {item.cta} &rarr;
-              </span>
-            </div>
-          )}
+        {/* Footer (Bottom) */}
+        <div className="mt-auto">
+            {/* Logo/Icon placeholder if needed, otherwise just title */}
+            <h3 className={`font-bold leading-tight ${textColorClass} ${item.size === 'small' ? 'text-xl' : 'text-2xl md:text-3xl'}`}>
+                {item.title}
+            </h3>
+            
+            {item.description && (
+                <p className={`mt-3 text-sm font-medium leading-relaxed ${subTextColorClass} line-clamp-3`}>
+                    {item.description}
+                </p>
+            )}
+
+            {item.cta && (
+                <div className="mt-6 flex items-center gap-2 text-sm font-semibold cursor-pointer group/btn w-fit">
+                    <span className={item.darkText ? 'text-black' : 'text-white'}>{item.cta}</span>
+                    <ArrowRight size={14} className={`transition-transform duration-300 group-hover/btn:translate-x-1 ${textColorClass}`} />
+                </div>
+            )}
         </div>
       </div>
     </motion.div>
