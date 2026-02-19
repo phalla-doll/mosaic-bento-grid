@@ -3,6 +3,20 @@ import { TESTIMONIALS } from '../constants';
 import { motion } from 'framer-motion';
 
 const Testimonials: React.FC = () => {
+  // Helper to determine grid span classes based on index
+  const getSpanClasses = (index: number) => {
+    // Pattern: 
+    // Row 1: [Span 2] [Span 1]
+    // Row 2: [Span 1] [Span 2]
+    // Row 3: [Span 2] [Span 1]
+    const pattern = [
+      'md:col-span-2', 'md:col-span-1',
+      'md:col-span-1', 'md:col-span-2',
+      'md:col-span-2', 'md:col-span-1'
+    ];
+    return pattern[index % pattern.length];
+  };
+
   return (
     <section className="w-full px-4 md:px-6 lg:px-8 py-24 border-t border-white/5 bg-black">
       <div className="max-w-7xl mx-auto">
@@ -15,7 +29,7 @@ const Testimonials: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
           {TESTIMONIALS.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -23,7 +37,7 @@ const Testimonials: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative p-8 rounded-2xl bg-neutral-900/50 border border-white/5 backdrop-blur-sm hover:bg-neutral-900/80 transition-colors group"
+              className={`relative p-8 rounded-2xl bg-neutral-900/50 border border-white/5 backdrop-blur-sm hover:bg-neutral-900/80 transition-colors group flex flex-col justify-between ${getSpanClasses(index)}`}
             >
               {/* Quote Icon */}
               <div className="absolute top-8 right-8 text-neutral-800 group-hover:text-neutral-700 transition-colors">
@@ -32,30 +46,28 @@ const Testimonials: React.FC = () => {
                 </svg>
               </div>
 
-              <div className="flex flex-col h-full justify-between">
-                <blockquote className="text-lg text-neutral-300 mb-8 leading-relaxed">
-                  "{testimonial.quote}"
-                </blockquote>
-                
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-neutral-800 overflow-hidden border border-white/10">
-                    {testimonial.avatarUrl ? (
-                        <img 
-                            src={testimonial.avatarUrl} 
-                            alt={testimonial.author}
-                            className="w-full h-full object-cover"
-                            referrerPolicy="no-referrer"
-                        />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center text-neutral-500 font-medium">
-                            {testimonial.author.charAt(0)}
-                        </div>
-                    )}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white">{testimonial.author}</div>
-                    <div className="text-sm text-neutral-500">{testimonial.role}, {testimonial.company}</div>
-                  </div>
+              <blockquote className={`text-lg md:text-xl text-neutral-300 mb-8 leading-relaxed ${index % 3 === 0 ? 'font-medium text-white' : ''}`}>
+                "{testimonial.quote}"
+              </blockquote>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-neutral-800 overflow-hidden border border-white/10 shrink-0">
+                  {testimonial.avatarUrl ? (
+                      <img 
+                          src={testimonial.avatarUrl} 
+                          alt={testimonial.author}
+                          className="w-full h-full object-cover"
+                          referrerPolicy="no-referrer"
+                      />
+                  ) : (
+                      <div className="w-full h-full flex items-center justify-center text-neutral-500 font-medium">
+                          {testimonial.author.charAt(0)}
+                      </div>
+                  )}
+                </div>
+                <div>
+                  <div className="font-semibold text-white">{testimonial.author}</div>
+                  <div className="text-sm text-neutral-500">{testimonial.role}, {testimonial.company}</div>
                 </div>
               </div>
             </motion.div>

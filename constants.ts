@@ -160,5 +160,29 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "CTO",
     company: "Raycast",
     avatarUrl: "https://picsum.photos/seed/emily/100/100"
+  },
+  {
+    id: '4',
+    quote: "The best design resource I've found in years. It's become an essential part of our prototyping workflow.",
+    author: "David Park",
+    role: "Senior Designer",
+    company: "Airbnb",
+    avatarUrl: "https://picsum.photos/seed/david/100/100"
+  },
+  {
+    id: '5',
+    quote: "Clean, performant, and beautiful. Mosaic helps us maintain consistency across all our internal tools.",
+    author: "Sophie Alpert",
+    role: "Engineering Manager",
+    company: "Stripe",
+    avatarUrl: "https://picsum.photos/seed/sophie/100/100"
+  },
+  {
+    id: '6',
+    quote: "I love how easy it is to customize the components. It feels like a bespoke design system out of the box.",
+    author: "James Wilson",
+    role: "Indie Developer",
+    company: "Self-employed",
+    avatarUrl: "https://picsum.photos/seed/james/100/100"
   }
 ];
