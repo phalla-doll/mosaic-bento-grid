@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { BentoItem } from '../types';
 
@@ -8,6 +8,18 @@ interface BentoCardProps {
 }
 
 const BentoCard: React.FC<BentoCardProps> = ({ item }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  
+  // Parallax Scroll Logic
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  // Move image from -10% to 10% as it scrolls through viewport
+  // We make the image taller (120%) so this movement doesn't show whitespace
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
   // Determine grid spans based on size prop
   // Uses responsive classes to adapt to column count changes
   const getSpanClasses = (size: BentoItem['size']) => {
@@ -30,6 +42,7 @@ const BentoCard: React.FC<BentoCardProps> = ({ item }) => {
 
   return (
     <motion.div
+      ref={ref}
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -41,12 +54,17 @@ const BentoCard: React.FC<BentoCardProps> = ({ item }) => {
     >
       {/* Background Image */}
       {item.imageUrl && (
-        <div className="absolute inset-0 z-0 h-full w-full">
-          <img
-            src={item.imageUrl}
-            alt={item.title}
-            className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-          />
+        <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
+          <motion.div 
+            style={{ y }}
+            className="absolute inset-0 h-[120%] w-full -top-[10%]"
+          >
+            <img
+              src={item.imageUrl}
+              alt={item.title}
+              className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+            />
+          </motion.div>
           {/* Subtle gradient overlay for readability if needed, usually lighter for modern look */}
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
         </div>
