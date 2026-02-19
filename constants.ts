@@ -2,6 +2,13 @@ import { BentoItem, Testimonial } from './types';
 
 export const CATEGORIES = ['All', 'Design', 'Development', 'Marketing', 'Productivity'] as const;
 
+export const MORE_CATEGORIES = [
+  'Analytics', 'Artificial Intelligence', 'Blockchain', 'Cloud Infrastructure',
+  'Cybersecurity', 'Data Science', 'E-commerce', 'Education', 'Entertainment',
+  'Finance', 'Gaming', 'Health & Wellness', 'Internet of Things', 'Mobile Apps',
+  'Social Media', 'Sustainability', 'Virtual Reality', 'Wearables'
+];
+
 export const ITEMS: BentoItem[] = [
   {
     id: '1',

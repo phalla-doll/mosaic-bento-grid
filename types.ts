@@ -13,7 +13,7 @@ export interface BentoItem {
   darkText?: boolean;
 }
 
-export type Category = 'All' | 'Design' | 'Development' | 'Marketing' | 'Productivity';
+export type Category = 'All' | 'Design' | 'Development' | 'Marketing' | 'Productivity' | 'More';
 
 export interface Testimonial {
   id: string;
