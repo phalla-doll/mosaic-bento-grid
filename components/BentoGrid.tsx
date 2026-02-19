@@ -55,7 +55,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({ items }) => {
         layout
         className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-[280px] grid-flow-dense"
       >
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {filteredItems.map((item) => (
             <BentoCard key={item.id} item={item} />
           ))}

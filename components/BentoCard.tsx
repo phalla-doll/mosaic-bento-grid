@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { BentoItem } from '../types';
@@ -7,12 +7,14 @@ interface BentoCardProps {
   item: BentoItem;
 }
 
-const BentoCard: React.FC<BentoCardProps> = ({ item }) => {
-  const ref = useRef<HTMLDivElement>(null);
+const BentoCard = forwardRef<HTMLDivElement, BentoCardProps>(({ item }, ref) => {
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useImperativeHandle(ref, () => elementRef.current as HTMLDivElement);
   
   // Parallax Scroll Logic
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: elementRef,
     offset: ["start end", "end start"]
   });
   
@@ -42,11 +44,11 @@ const BentoCard: React.FC<BentoCardProps> = ({ item }) => {
 
   return (
     <motion.div
-      ref={ref}
+      ref={elementRef}
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
+      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`group relative overflow-hidden rounded-2xl ${
         item.backgroundColor || 'bg-neutral-900'
@@ -111,6 +113,6 @@ const BentoCard: React.FC<BentoCardProps> = ({ item }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 export default BentoCard;
